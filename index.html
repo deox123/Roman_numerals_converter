@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+  <title>Roman Converter</title>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h1 class="display-4 text-center my-5">Roman Converter</h1>
+        <form id="myForm" class="form-group my-4">
+          <input id="input" type="number" class="form-control form-control-lg" />
+        </form>
+        <div id="output" class="cards">
+          <div class="card card-inverse card-warning mb-3 text-center">
+            <div class="card-block">
+              <h4 id="rOutput">Roman number: </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+<script>
+
+document.getElementById('input').addEventListener('input', function() {
+  var input = document.getElementById('input').value;
+  var output = document.getElementById('rOutput');
+
+  console.log(convertToRoman(input));
+  output.innerHTML = convertToRoman(input);
+})
+
+
+function convertToRoman(num) {
+  var numbers = [ 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 ];
+  var roman = [ 'M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I' ];
+  var converted = '';
+
+  for (var i = 0; i < numbers.length; i++) {
+    while (numbers[i] <= num) {
+      converted += roman[i];
+      num -= numbers[i];
+    }
+  }
+  return converted;
+}
+
+
+
+</script>
